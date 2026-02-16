@@ -9,11 +9,12 @@
 </head>
 <body>
     <h1>Contact List</h1>
-    <a href="{% url 'addcontact' %}">Add Contact</a>
+    <a href="{% url 'addcontact' %}">Add Contact</a><br><br>
 
     <table border="1px">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>First Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
@@ -23,6 +24,14 @@
         <tbody>
             {% for contact in contacts %}
             <tr>
+                <!-- Add condition / if already a image contact is added without image the eeror will raise -->
+                <td>
+                    {% if contact.profile_image %}
+                        <img src="{{ contact.profile_image.url }}" width="100">
+                    {% else %}
+                        No Image
+                    {% endif %}  
+                </td>
                 <td>{{ contact.firstname }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phonenumber }}</td>
